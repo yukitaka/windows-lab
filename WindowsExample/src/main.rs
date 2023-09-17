@@ -3,7 +3,10 @@
 use windows::{
     core::*,
     ApplicationModel::{Core::*, Package},
-    Win32::UI::WindowsAndMessaging::*,
+    Win32::{
+        System::Com::*,
+        UI::WindowsAndMessaging::*,
+    },
     UI::Core::*,
 };
 
@@ -38,7 +41,7 @@ impl IFrameworkView_Impl for CoreAppView {
         let window = CoreWindow::GetForCurrentThread()?;
         window.Activate()?;
 
-        let dispatcher = window.Dispatchre()?;
+        let dispatcher = window.Dispatcher()?;
         dispatcher.ProcessEvents(CoreProcessEventsOption::ProcessUntilQuit)?;
 
         Ok(())
@@ -49,9 +52,17 @@ impl IFrameworkView_Impl for CoreAppView {
     }
 }
 
-fn main() {
+fn main() -> Result<()>{
     unsafe {
-        MessageBoxA(None, s!("Ansi"), s!("World"), MB_OK);
-        MessageBoxW(None, w!("Wide"), w!("World"), MB_OK);
+        CoInitializeEx(None, COINIT_MULTITHREADED)?;
+
+        if let Err(result) = Package::Current() {
+            MessageBoxW(None, w!("Error"), w!("World"), MB_OK);
+            return Err(result);
+        }
+
+        let app: IFrameworkViewSource = CoreApp().into();
+        CoreApplication::Run(&app)?;
+        Ok(())
     }
 }

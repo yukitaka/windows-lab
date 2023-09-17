@@ -12,5 +12,6 @@ features = [
     "UI_Core",
     "ApplicationModel_Core",
     "Win32_Foundation",
+    "Win32_System_Com",
     "Win32_UI_WindowsAndMessaging",
 ]
