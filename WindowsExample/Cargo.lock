@@ -3,13 +3,6 @@
 version = 3
 
 [[package]]
-name = "WindowsExample"
-version = "0.1.0"
-dependencies = [
- "windows",
-]
-
-[[package]]
 name = "proc-macro2"
 version = "1.0.67"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -113,6 +106,13 @@ name = "windows_aarch64_msvc"
 version = "0.48.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "dc35310971f3b2dbbf3f0690a219f40e2d9afcf64f9ab7cc1be722937c26b4bc"
+
+[[package]]
+name = "windows_example"
+version = "0.1.0"
+dependencies = [
+ "windows",
+]
 
 [[package]]
 name = "windows_i686_gnu"

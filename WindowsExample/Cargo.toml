@@ -1,5 +1,5 @@
 [package]
-name = "WindowsExample"
+name = "windows_example"
 version = "0.1.0"
 edition = "2021"
 
