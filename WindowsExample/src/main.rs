@@ -5,7 +5,7 @@ use windows::{
     ApplicationModel::{Core::*, Package},
     Win32::{
         System::Com::*,
-        UI::WindowsAndMessaging::*,
+        UI::WindowsAndMessaging::{MessageBoxW, MB_ICONSTOP, MB_OK},
     },
     UI::Core::*,
 };
@@ -57,12 +57,17 @@ fn main() -> Result<()>{
         CoInitializeEx(None, COINIT_MULTITHREADED)?;
 
         if let Err(result) = Package::Current() {
-            MessageBoxW(None, w!("Error"), w!("World"), MB_OK);
+            MessageBoxW(
+                None,
+                w!("This sample must be registered (via register.cmd) and launched from Start."),
+                w!("Error"),
+                MB_ICONSTOP | MB_OK,
+            );
             return Err(result);
         }
-
-        let app: IFrameworkViewSource = CoreApp().into();
-        CoreApplication::Run(&app)?;
-        Ok(())
     }
+
+    let app: IFrameworkViewSource = CoreApp().into();
+    CoreApplication::Run(&app)?;
+    Ok(())
 }

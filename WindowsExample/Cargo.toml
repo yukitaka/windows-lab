@@ -1,6 +1,6 @@
 [package]
 name = "windows_example"
-version = "0.1.0"
+version = "0.0.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -12,6 +12,7 @@ features = [
     "UI_Core",
     "ApplicationModel_Core",
     "Win32_Foundation",
+    "Win32_Storage_Packaging_Appx",
     "Win32_System_Com",
     "Win32_UI_WindowsAndMessaging",
 ]
