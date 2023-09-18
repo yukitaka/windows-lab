@@ -61,8 +61,8 @@ fn main() -> Result<()>{
             return Err(result);
         }
 
-        let app: IFrameworkViewSource = CoreApp().into();
-        CoreApplication::Run(&app)?;
-        Ok(())
     }
+    let app: IFrameworkViewSource = CoreApp().into();
+    CoreApplication::Run(&app)?;
+    Ok(())
 }
